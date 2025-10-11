@@ -14,36 +14,41 @@ const navigation = [
 export const Sidebar = () => {
   return (
     <div className="flex h-screen w-64 flex-col bg-sidebar border-r border-sidebar-border">
-      <div className="flex h-16 items-center border-b border-sidebar-border px-6">
+      <div className="flex h-16 items-center border-b border-sidebar-border px-6 hover:bg-sidebar-accent/50 transition-smooth cursor-pointer group">
         <h1 className="text-xl font-bold text-sidebar-foreground">
-          ThermalSR<span className="text-sidebar-primary">Pro</span>
+          ThermalSR<span className="text-sidebar-primary group-hover:scale-110 inline-block transition-smooth">Pro</span>
         </h1>
       </div>
       
       <nav className="flex-1 space-y-1 px-3 py-4">
-        {navigation.map((item) => (
+        {navigation.map((item, idx) => (
           <NavLink
             key={item.name}
             to={item.href}
             end={item.href === "/"}
             className={({ isActive }) =>
               cn(
-                "group flex items-center rounded-md px-3 py-2 text-sm font-medium transition-smooth",
+                "group flex items-center rounded-md px-3 py-2 text-sm font-medium transition-smooth hover:scale-[1.02] animate-fade-in",
                 isActive
-                  ? "bg-sidebar-primary text-sidebar-primary-foreground"
+                  ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-soft"
                   : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               )
             }
+            style={{ animationDelay: `${idx * 50}ms` }}
           >
-            <item.icon className="mr-3 h-5 w-5" />
-            {item.name}
+            {({ isActive }) => (
+              <>
+                <item.icon className={cn("mr-3 h-5 w-5 transition-smooth", isActive && "scale-110")} />
+                {item.name}
+              </>
+            )}
           </NavLink>
         ))}
       </nav>
 
       <div className="border-t border-sidebar-border p-4">
-        <div className="rounded-lg bg-sidebar-accent p-3">
-          <p className="text-xs font-medium text-sidebar-accent-foreground">
+        <div className="rounded-lg bg-sidebar-accent p-3 hover:bg-sidebar-accent/80 transition-smooth cursor-pointer hover:shadow-soft group">
+          <p className="text-xs font-medium text-sidebar-accent-foreground group-hover:scale-105 inline-block transition-smooth">
             Role: Remote Sensing Scientist
           </p>
           <p className="text-xs text-sidebar-accent-foreground/70 mt-1">

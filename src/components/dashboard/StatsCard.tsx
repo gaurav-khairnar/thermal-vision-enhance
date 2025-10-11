@@ -11,7 +11,7 @@ interface StatsCardProps {
 
 export const StatsCard = ({ title, value, change, icon: Icon, trend = "neutral" }: StatsCardProps) => {
   return (
-    <Card className="shadow-soft hover:shadow-medium transition-smooth">
+    <Card className="shadow-soft hover:shadow-medium transition-smooth hover-scale group cursor-pointer">
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div>
@@ -27,8 +27,8 @@ export const StatsCard = ({ title, value, change, icon: Icon, trend = "neutral" 
               </p>
             )}
           </div>
-          <div className="rounded-full bg-primary/10 p-3">
-            <Icon className="h-6 w-6 text-primary" />
+          <div className="rounded-full bg-primary/10 group-hover:bg-primary/20 p-3 transition-smooth">
+            <Icon className="h-6 w-6 text-primary group-hover:scale-110 transition-smooth" />
           </div>
         </div>
       </CardContent>

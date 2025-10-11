@@ -27,17 +27,17 @@ export const DatasetCard = ({
   thumbnail,
 }: DatasetCardProps) => {
   return (
-    <Card className="shadow-soft hover:shadow-medium transition-smooth overflow-hidden">
-      <div className="h-48 bg-gradient-data relative">
+    <Card className="shadow-soft hover:shadow-strong transition-smooth overflow-hidden hover-scale group cursor-pointer">
+      <div className="h-48 bg-gradient-data relative overflow-hidden">
         {thumbnail ? (
-          <img src={thumbnail} alt={name} className="w-full h-full object-cover" />
+          <img src={thumbnail} alt={name} className="w-full h-full object-cover group-hover:scale-110 transition-smooth" />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <Layers className="h-16 w-16 text-primary/30" />
+            <Layers className="h-16 w-16 text-primary/30 group-hover:text-primary/50 group-hover:scale-110 transition-smooth" />
           </div>
         )}
         <div className="absolute top-3 right-3">
-          <Badge variant={validated ? "success" : "warning"}>
+          <Badge variant={validated ? "success" : "warning"} className="animate-fade-in">
             {validated ? "Validated" : "Pending"}
           </Badge>
         </div>
@@ -62,8 +62,8 @@ export const DatasetCard = ({
           <span>Resolution: {resolution}</span>
           <span>Size: {size}</span>
         </div>
-        <Button variant="outline" className="w-full" size="sm">
-          <Eye className="h-4 w-4 mr-2" />
+        <Button variant="outline" className="w-full hover:scale-105 transition-smooth group" size="sm">
+          <Eye className="h-4 w-4 mr-2 group-hover:scale-110 transition-smooth" />
           View Details
         </Button>
       </CardContent>

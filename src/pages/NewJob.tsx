@@ -13,9 +13,9 @@ const NewJob = () => {
   const [scaleFactor, setScaleFactor] = useState([2]);
 
   return (
-    <div className="p-8 space-y-6 max-w-5xl mx-auto">
-      <div>
-        <h1 className="text-3xl font-bold text-foreground mb-2">
+    <div className="p-8 space-y-6 max-w-5xl mx-auto animate-fade-in">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold text-foreground">
           Create New Job
         </h1>
         <p className="text-muted-foreground">
@@ -34,9 +34,9 @@ const NewJob = () => {
           <div key={s.num} className="flex items-center flex-1">
             <div className="flex items-center">
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
+                className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-smooth ${
                   step >= s.num
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-primary text-primary-foreground scale-110"
                     : "bg-muted text-muted-foreground"
                 }`}
               >
@@ -58,7 +58,7 @@ const NewJob = () => {
       </div>
 
       {step === 1 && (
-        <Card className="shadow-medium">
+        <Card className="shadow-medium animate-fade-in hover:shadow-strong transition-smooth">
           <CardHeader>
             <CardTitle>Select Input Datasets</CardTitle>
           </CardHeader>
@@ -66,7 +66,7 @@ const NewJob = () => {
             <div className="space-y-3">
               <Label>Thermal Infrared Band</Label>
               <RadioGroup defaultValue="ds-001">
-                <div className="flex items-center space-x-3 p-4 border border-border rounded-lg hover:bg-muted/50 transition-smooth cursor-pointer">
+                <div className="flex items-center space-x-3 p-4 border border-border rounded-lg hover:bg-muted/50 hover:border-primary/50 transition-smooth cursor-pointer hover:shadow-soft">
                   <RadioGroupItem value="ds-001" id="ds-001" />
                   <label htmlFor="ds-001" className="flex-1 cursor-pointer">
                     <p className="font-medium">Landsat-8 Band 10 (TIR)</p>
@@ -82,7 +82,7 @@ const NewJob = () => {
             <div className="space-y-3">
               <Label>Optical Reference Bands</Label>
               <RadioGroup defaultValue="ds-001-opt">
-                <div className="flex items-center space-x-3 p-4 border border-border rounded-lg hover:bg-muted/50 transition-smooth cursor-pointer">
+                <div className="flex items-center space-x-3 p-4 border border-border rounded-lg hover:bg-muted/50 hover:border-primary/50 transition-smooth cursor-pointer hover:shadow-soft">
                   <RadioGroupItem value="ds-001-opt" id="ds-001-opt" />
                   <label htmlFor="ds-001-opt" className="flex-1 cursor-pointer">
                     <p className="font-medium">Landsat-8 RGB + NIR</p>
@@ -99,7 +99,7 @@ const NewJob = () => {
       )}
 
       {step === 2 && (
-        <Card className="shadow-medium">
+        <Card className="shadow-medium animate-fade-in hover:shadow-strong transition-smooth">
           <CardHeader>
             <CardTitle>Region of Interest & Scale Factor</CardTitle>
           </CardHeader>
@@ -134,7 +134,7 @@ const NewJob = () => {
       )}
 
       {step === 3 && (
-        <Card className="shadow-medium">
+        <Card className="shadow-medium animate-fade-in hover:shadow-strong transition-smooth">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               <span>Processing Parameters</span>
@@ -168,7 +168,7 @@ const NewJob = () => {
       )}
 
       {step === 4 && (
-        <Card className="shadow-medium">
+        <Card className="shadow-medium animate-fade-in hover:shadow-strong transition-smooth">
           <CardHeader>
             <CardTitle>Review & Submit</CardTitle>
           </CardHeader>
@@ -200,17 +200,18 @@ const NewJob = () => {
           variant="outline"
           onClick={() => setStep(Math.max(1, step - 1))}
           disabled={step === 1}
+          className="hover:scale-105 transition-smooth"
         >
           Previous
         </Button>
         {step < 4 ? (
-          <Button onClick={() => setStep(step + 1)}>
+          <Button onClick={() => setStep(step + 1)} className="hover:scale-105 transition-smooth group">
             Next
-            <ChevronRight className="ml-2 h-4 w-4" />
+            <ChevronRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-smooth" />
           </Button>
         ) : (
-          <Button variant="gradient">
-            <Play className="mr-2 h-5 w-5" />
+          <Button variant="gradient" className="hover:scale-105 transition-smooth group">
+            <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-smooth" />
             Start Processing
           </Button>
         )}

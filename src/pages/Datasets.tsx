@@ -41,39 +41,41 @@ const Datasets = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-8 space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">Datasets</h1>
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold text-foreground">Datasets</h1>
           <p className="text-muted-foreground">
             Manage your thermal and optical imagery datasets
           </p>
         </div>
-        <Button variant="gradient">
-          <Upload className="mr-2 h-5 w-5" />
+        <Button variant="gradient" className="hover:scale-105 transition-smooth group">
+          <Upload className="mr-2 h-5 w-5 group-hover:scale-110 transition-smooth" />
           Upload Dataset
         </Button>
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 animate-fade-in" style={{ animationDelay: "100ms" }}>
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search datasets by name, location, or date..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10"
+            className="pl-10 transition-smooth focus:ring-2 focus:ring-primary/20"
           />
         </div>
-        <Button variant="outline">
+        <Button variant="outline" className="hover:scale-105 transition-smooth">
           <Filter className="mr-2 h-4 w-4" />
           Filters
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {mockDatasets.map((dataset) => (
-          <DatasetCard key={dataset.id} {...dataset} />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in" style={{ animationDelay: "200ms" }}>
+        {mockDatasets.map((dataset, idx) => (
+          <div key={dataset.id} className="animate-fade-in" style={{ animationDelay: `${300 + idx * 100}ms` }}>
+            <DatasetCard {...dataset} />
+          </div>
         ))}
       </div>
     </div>

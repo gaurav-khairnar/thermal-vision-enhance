@@ -40,14 +40,18 @@ const statusVariant = {
 
 export const RecentJobs = () => {
   return (
-    <Card className="shadow-soft">
+    <Card className="shadow-soft hover:shadow-medium transition-smooth">
       <CardHeader>
         <CardTitle>Recent Jobs</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {jobs.map((job) => (
-            <div key={job.id} className="flex items-center justify-between p-4 rounded-lg border border-border hover:bg-muted/50 transition-smooth">
+          {jobs.map((job, idx) => (
+            <div 
+              key={job.id} 
+              className="flex items-center justify-between p-4 rounded-lg border border-border hover:bg-muted/50 hover:border-primary/50 hover:shadow-soft transition-smooth cursor-pointer animate-fade-in"
+              style={{ animationDelay: `${idx * 50}ms` }}
+            >
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-sm font-mono font-medium">{job.id}</span>
@@ -73,11 +77,11 @@ export const RecentJobs = () => {
               </div>
               <div className="flex items-center gap-2 ml-4">
                 {job.status === "completed" && (
-                  <Button size="sm" variant="ghost">
+                  <Button size="sm" variant="ghost" className="hover:scale-110 transition-smooth">
                     <Eye className="h-4 w-4" />
                   </Button>
                 )}
-                <Button size="sm" variant="ghost">
+                <Button size="sm" variant="ghost" className="hover:scale-110 transition-smooth">
                   <MoreVertical className="h-4 w-4" />
                 </Button>
               </div>

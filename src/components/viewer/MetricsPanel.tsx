@@ -18,11 +18,11 @@ const MetricCard = ({ label, value, unit, description, status }: MetricCardProps
   };
 
   return (
-    <div className="p-4 rounded-lg border border-border bg-card">
+    <div className="p-4 rounded-lg border border-border bg-card hover:bg-muted/50 hover:shadow-soft transition-smooth cursor-pointer group">
       <div className="flex items-center justify-between mb-2">
         <span className="text-sm font-medium text-muted-foreground">{label}</span>
-        {status === "excellent" && <CheckCircle2 className="h-4 w-4 text-success" />}
-        {status === "warning" && <AlertTriangle className="h-4 w-4 text-warning" />}
+        {status === "excellent" && <CheckCircle2 className="h-4 w-4 text-success group-hover:scale-110 transition-smooth" />}
+        {status === "warning" && <AlertTriangle className="h-4 w-4 text-warning group-hover:scale-110 transition-smooth" />}
       </div>
       <div className={`text-3xl font-bold ${statusColor[status]} mb-1`}>
         {value}
@@ -35,35 +35,41 @@ const MetricCard = ({ label, value, unit, description, status }: MetricCardProps
 
 export const MetricsPanel = () => {
   return (
-    <Card className="shadow-soft">
+    <Card className="shadow-soft hover:shadow-medium transition-smooth">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <span>Quality Metrics</span>
-          <Badge variant="success">Validated</Badge>
+          <Badge variant="success" className="animate-pulse">Validated</Badge>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <MetricCard
-          label="PSNR"
-          value={32.4}
-          unit="dB"
-          description="Higher is better (image fidelity)"
-          status="excellent"
-        />
-        <MetricCard
-          label="SSIM"
-          value={0.91}
-          unit=""
-          description="Higher is better (structural similarity)"
-          status="excellent"
-        />
-        <MetricCard
-          label="RMSE"
-          value={1.2}
-          unit="K"
-          description="Lower is better (thermal accuracy)"
-          status="good"
-        />
+        <div className="animate-fade-in">
+          <MetricCard
+            label="PSNR"
+            value={32.4}
+            unit="dB"
+            description="Higher is better (image fidelity)"
+            status="excellent"
+          />
+        </div>
+        <div className="animate-fade-in" style={{ animationDelay: "100ms" }}>
+          <MetricCard
+            label="SSIM"
+            value={0.91}
+            unit=""
+            description="Higher is better (structural similarity)"
+            status="excellent"
+          />
+        </div>
+        <div className="animate-fade-in" style={{ animationDelay: "200ms" }}>
+          <MetricCard
+            label="RMSE"
+            value={1.2}
+            unit="K"
+            description="Lower is better (thermal accuracy)"
+            status="good"
+          />
+        </div>
         
         <div className="pt-4 border-t border-border space-y-3">
           <h4 className="text-sm font-semibold">Physics Validation</h4>

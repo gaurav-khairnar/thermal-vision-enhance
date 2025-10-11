@@ -18,10 +18,10 @@ const Results = () => {
   const [viewMode, setViewMode] = useState<"single" | "split" | "swipe">("single");
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-8 space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold text-foreground">
             Results Viewer
           </h1>
           <p className="text-muted-foreground">
@@ -29,12 +29,12 @@ const Results = () => {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline">
-            <Download className="mr-2 h-4 w-4" />
+          <Button variant="outline" className="hover:scale-105 transition-smooth group">
+            <Download className="mr-2 h-4 w-4 group-hover:scale-110 transition-smooth" />
             Export
           </Button>
-          <Button variant="default">
-            <Maximize2 className="mr-2 h-4 w-4" />
+          <Button variant="default" className="hover:scale-105 transition-smooth group">
+            <Maximize2 className="mr-2 h-4 w-4 group-hover:scale-110 transition-smooth" />
             Fullscreen
           </Button>
         </div>
@@ -43,13 +43,13 @@ const Results = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div className="lg:col-span-3 space-y-4">
           {/* Map Viewer */}
-          <Card className="shadow-medium">
+          <Card className="shadow-medium hover:shadow-strong transition-smooth">
             <CardContent className="p-0">
-              <div className="h-[600px] relative bg-gradient-data rounded-lg overflow-hidden">
+              <div className="h-[600px] relative bg-gradient-data rounded-lg overflow-hidden group">
                 {/* Map placeholder */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapIcon className="h-24 w-24 text-primary/30 mx-auto mb-4" />
+                  <div className="text-center animate-fade-in">
+                    <MapIcon className="h-24 w-24 text-primary/30 mx-auto mb-4 group-hover:scale-110 group-hover:text-primary/50 transition-smooth" />
                     <p className="text-muted-foreground">
                       Interactive map viewer with thermal overlay
                     </p>
@@ -62,6 +62,7 @@ const Results = () => {
                     size="sm"
                     variant={viewMode === "single" ? "default" : "outline"}
                     onClick={() => setViewMode("single")}
+                    className="hover:scale-110 transition-smooth"
                   >
                     <Eye className="h-4 w-4" />
                   </Button>
@@ -69,6 +70,7 @@ const Results = () => {
                     size="sm"
                     variant={viewMode === "split" ? "default" : "outline"}
                     onClick={() => setViewMode("split")}
+                    className="hover:scale-110 transition-smooth"
                   >
                     <Split className="h-4 w-4" />
                   </Button>
@@ -76,6 +78,7 @@ const Results = () => {
                     size="sm"
                     variant={viewMode === "swipe" ? "default" : "outline"}
                     onClick={() => setViewMode("swipe")}
+                    className="hover:scale-110 transition-smooth"
                   >
                     <Layers className="h-4 w-4" />
                   </Button>
@@ -105,7 +108,7 @@ const Results = () => {
           </Card>
 
           {/* Layer Controls */}
-          <Card className="shadow-soft">
+          <Card className="shadow-soft hover:shadow-medium transition-smooth">
             <CardContent className="p-4">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-semibold text-foreground">Layer Controls</h3>
